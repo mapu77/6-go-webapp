@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Buscar vuelos</title>
+</head>
+<body>
+<div class="container">
+{{template "menu" .}}
+    <div id="content" style="padding-left: 20px; padding-right: 20px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Buscador de vuelos</h3>
+            </div>
+            <div class="panel-body container-fluid">
+
+                <form action="/apicall/flights" method="GET">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Introduzca el Nº de vuelo:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon glyphicon glyphicon-plane"></span>
+                                    <input type="text" class="form-control" placeholder="Número de vuelo"
+                                           name="code">
+                                </div>
+                            </div>
+                            <label>Selecciona una compañia:</label>
+                            <select class="form-control" name="company">
+                            {{range $company := .Companies}}
+                                <option value="{{$company}}">{{$company}}</option>
+                            {{end}}
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Selecciona una ciudad de origen:</label>
+                            <select class="form-control" name="departureCity">
+                            {{range $city := .Cities}}
+                                <option value="{{$city}}">{{$city}}</option>
+                            {{end}}
+                            </select><br/>
+
+                            <label>Selecciona una ciudad de destino:</label>
+                            <select class="form-control" name="arrivalCity">
+                            {{range $city := .Cities}}
+                                <option value="{{$city}}">{{$city}}</option>
+                            {{end}}
+                            </select><br/>
+                            <button class="btn btn-primary pull-right" type="submit">Buscar vuelo</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Vuelos encontrados</title>
+</head>
+<body>
+<div class="container">
+{{template "menu" .}}
+{{if not .Flights}}
+    <h2>No hay resultados para su búsqueda</h2>
+{{else}}
+    <h2>Vuelos encontrados</h2>
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>Id Vuelo</th>
+            <th>Nº Vuelo</th>
+            <th>Compañia</th>
+            <th>Origen</th>
+            <th>Hora Salida</th>
+            <th>Destino</th>
+            <th>Hora Llegada</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $flight := .Flights}}
+        <tr>
+            <td>{{$flight.Id}}</td>
+            <td>{{$flight.Code}}</td>
+            <td>{{$flight.Company}}</td>
+            <td>{{$flight.DepartureCity}}</td>
+            <td>{{$flight.DepartureTime}}</td>
+            <td>{{$flight.ArrivalCity}}</td>
+            <td>{{$flight.ArrivalTime}}</td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+{{end}}
+</div>
+</body>
+</html>

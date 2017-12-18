@@ -1,0 +1,48 @@
+{
+  "ImportPath": "github.com/mapu77/AD-Labs/6-go-webapp",
+  "GoVersion": "go1.9",
+  "GodepVersion": "v79",
+  "Packages": [
+    "./..."
+  ],
+  "Deps": [
+    {
+      "ImportPath": "github.com/gorilla/context",
+      "Comment": "v1.1-7-g08b5f42",
+      "Rev": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+    },
+    {
+      "ImportPath": "github.com/gorilla/mux",
+      "Comment": "v1.6.0-6-g5ab525f",
+      "Rev": "5ab525f4fb1678e197ae59401e9050fa0b6cb5fd"
+    },
+    {
+      "ImportPath": "github.com/gorilla/securecookie",
+      "Comment": "v1.1-6-ge59506c",
+      "Rev": "e59506cc896acb7f7bf732d4fdf5e25f7ccd8983"
+    },
+    {
+      "ImportPath": "github.com/gorilla/sessions",
+      "Comment": "v1.1-8-ga3acf13",
+      "Rev": "a3acf13e802c358d65f249324d14ed24aac11370"
+    },
+    {
+      "ImportPath": "github.com/moul/http2curl",
+      "Rev": "9ac6cf4d929b2fa8fd2d2e6dec5bb0feb4f4911d"
+    },
+    {
+      "ImportPath": "github.com/parnurzeal/gorequest",
+      "Comment": "v0.2.15-24-g8e3aed2",
+      "Rev": "8e3aed27fe49f7fdc765dad067845f600fc984e8"
+    },
+    {
+      "ImportPath": "github.com/pkg/errors",
+      "Comment": "v0.8.0-10-ge881fd5",
+      "Rev": "e881fd58d78e04cf6d0de1217f8707c8cc2249bc"
+    },
+    {
+      "ImportPath": "golang.org/x/net/publicsuffix",
+      "Rev": "d866cfc389cec985d6fda2859936a575a55a3ab6"
+    }
+  ]
+}
