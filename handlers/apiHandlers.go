@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"encoding/json"
+	"strconv"
 )
 
 const apiURL = "https://ad-go-api.herokuapp.com/api/v1"
@@ -21,7 +22,16 @@ type Flight struct {
 }
 
 type Hotel struct {
+	Id			string	`json:"id"`
+	Name 		string	`json:"name"`
+	HotelChain 	string	`json:"hotel_chain"`
+	Rooms		int		`json:"rooms"`
+	Street		string	`json:"street"`
+	ZipCode		 string	`json:"zip_code"`
+	City 		string	`json:"city"`
+	Country		string	`json:"country"`
 }
+
 
 type Return struct {
 	Username  string
@@ -111,9 +121,38 @@ func GetFlights(w http.ResponseWriter, r *http.Request) (int, error) {
 }
 
 func GetHotels(w http.ResponseWriter, r *http.Request) (int, error) {
+
 	return http.StatusNotImplemented, nil
 }
 
 func NewHotel(w http.ResponseWriter, r *http.Request) (int, error) {
-	return http.StatusNotImplemented, nil
+	r.ParseForm()
+	rooms, err := strconv.Atoi(r.PostFormValue("Rooms"))
+	if err != nil {
+		return 400, nil
+	}
+	h := Hotel{	Name:r.PostFormValue("Name"),
+				HotelChain:r.PostFormValue("HotelChain"),
+				Rooms:rooms,
+				Street:r.PostFormValue("Street"),
+				ZipCode:r.PostFormValue("ZipCode"),
+				City:r.PostFormValue("City"),
+				Country:r.PostFormValue("Country"),}
+	request := gorequest.New()
+	resp, body, errs := request.Post(apiURL + "/hotels").
+		Send(h).
+		End()
+	fmt.Print(resp, body, errs)
+	if resp.StatusCode != 500 || resp.StatusCode < 400{
+		u := User{Username: getCookieUsername(w, r)}
+
+		t, _ := template.ParseFiles("templates/success.html", "templates/menu.html")
+		return http.StatusOK, t.ExecuteTemplate(w, "success.html", u)
+
+	} else if resp.StatusCode == 500 {
+		return 500, nil
+	} else {
+		return 400, nil
+	}
+	return resp.StatusCode, nil
 }

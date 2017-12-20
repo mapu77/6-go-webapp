@@ -13,13 +13,13 @@
                 <h3 class="panel-title">Alta hotel</h3>
             </div>
             <div class="panel-body container-fluid">
-                <form method="POST" action="/apicall/hotel">
+                <form method="POST" action="/apicall/hotels">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-text-size"></span>
-                                    <input type="text" class="form-control" placeholder="Nombre del hotel" name="nombre"
+                                    <input type="text" class="form-control" placeholder="Nombre del hotel" name="Name"
                                            required>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-info-sign"></span>
-                                    <input type="text" class="form-control" placeholder="Cadena hotelera" name="cadena"
+                                    <input type="text" class="form-control" placeholder="Cadena hotelera" name="HotelChain"
                                            required>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-bed"></span>
                                     <input type="number" class="form-control" placeholder="Nº Habitaciones"
-                                           name="num_hab"
+                                           name="Rooms"
                                            min="1" required>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-pushpin"></span>
-                                    <input type="text" class="form-control" placeholder="Calle" name="calle" required>
+                                    <input type="text" class="form-control" placeholder="Calle" name="Street" required>
                                 </div>
                             </div>
                         </div>
@@ -55,16 +55,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-globe"></span>
-                                    <input type="number" class="form-control" placeholder="Número" name="num" min="0"
-                                           required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon glyphicon glyphicon-globe"></span>
-                                    <input type="text" class="form-control" placeholder="Código postal" name="cp"
+                                    <input type="text" class="form-control" placeholder="Código postal" name="ZipCode"
                                            required>
                                 </div>
                             </div>
@@ -74,16 +65,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-globe"></span>
                                     <input type="text" class="form-control" placeholder="Ciudad"
-                                           name="ciudad" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon glyphicon glyphicon-globe"></span>
-                                    <input type="text" class="form-control" placeholder="Provincia"
-                                           name="provincia" required>
+                                           name="City" required>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +74,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon glyphicon glyphicon-globe"></span>
                                     <input type="text" class="form-control" placeholder="Pais"
-                                           name="pais" required>
+                                           name="Country" required>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +88,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
