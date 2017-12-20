@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"log"
 	"github.com/gorilla/sessions"
-	//"github.com/mapu77/6-go-webapp/routes"
 	"github.com/mapu77/AD-Labs/6-go-webapp/routes"
 	"os"
 )

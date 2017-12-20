@@ -6,7 +6,6 @@ import (
 	"github.com/gorilla/sessions"
 
 	"fmt"
-	//"github.com/mapu77/6-go-webapp/handlers"
 	"github.com/mapu77/AD-Labs/6-go-webapp/handlers"
 )
 

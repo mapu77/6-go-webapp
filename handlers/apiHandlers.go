@@ -22,23 +22,22 @@ type Flight struct {
 }
 
 type Hotel struct {
-	Id			string	`json:"id"`
-	Name 		string	`json:"name"`
-	HotelChain 	string	`json:"hotel_chain"`
-	Rooms		int		`json:"rooms"`
-	Street		string	`json:"street"`
-	ZipCode		 string	`json:"zip_code"`
-	City 		string	`json:"city"`
-	Country		string	`json:"country"`
+	Id         string `json:"id"`
+	Name       string `json:"name"`
+	HotelChain string `json:"hotel_chain"`
+	Rooms      int    `json:"rooms"`
+	Street     string `json:"street"`
+	ZipCode    string `json:"zip_code"`
+	City       string `json:"city"`
+	Country    string `json:"country"`
 }
-
 
 type Return struct {
 	Username  string
 	Flights   []Flight
 	Companies []string
 	Cities    []string
-	Chains	  []string
+	Chains    []string
 	Hotels    []Hotel
 }
 
@@ -175,19 +174,19 @@ func NewHotel(w http.ResponseWriter, r *http.Request) (int, error) {
 	if err != nil {
 		return 400, nil
 	}
-	h := Hotel{	Name:r.PostFormValue("Name"),
-				HotelChain:r.PostFormValue("HotelChain"),
-				Rooms:rooms,
-				Street:r.PostFormValue("Street"),
-				ZipCode:r.PostFormValue("ZipCode"),
-				City:r.PostFormValue("City"),
-				Country:r.PostFormValue("Country"),}
+	h := Hotel{Name: r.PostFormValue("Name"),
+		HotelChain: r.PostFormValue("HotelChain"),
+		Rooms: rooms,
+		Street: r.PostFormValue("Street"),
+		ZipCode: r.PostFormValue("ZipCode"),
+		City: r.PostFormValue("City"),
+		Country: r.PostFormValue("Country"),}
 	request := gorequest.New()
 	resp, body, errs := request.Post(apiURL + "/hotels").
 		Send(h).
 		End()
 	fmt.Print(resp, body, errs)
-	if resp.StatusCode != 500 || resp.StatusCode < 400{
+	if resp.StatusCode != 500 || resp.StatusCode < 400 {
 		u := User{Username: getCookieUsername(w, r)}
 
 		t, _ := template.ParseFiles("templates/success.html", "templates/menu.html")
