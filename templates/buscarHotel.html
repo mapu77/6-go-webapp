@@ -29,17 +29,17 @@
                         <div class="col-sm-6">
                             <label>Selecciona una ciudad: </label>
                             <select class="form-control" name="ciudad">
-                            {{/*<c:forEach var="ciudad" items="${ciudades}">
-                                        <option value="${ciudad}">${ciudad}</option>
-                                    </c:forEach>*/}}
+                            {{range $city := .Cities}}
+                                <option value="{{$city}}">{{$city}}</option>
+                            {{end}}
                             </select>
                         </div>
                         <div class="col-sm-6">
                             <label>Selecciona una cadena hotelera: </label>
                             <select class="form-control" name="cadena">
-                            {{/*<c:forEach var="cadena" items="${cadenas}">
-                                        <option value="${cadena}">${cadena}</option>
-                                    </c:forEach>*/}}
+                            {{range $chain := .Chains}}
+                                <option value="{{$chain}}">{{$chain}}</option>
+                            {{end}}
                             </select>
                             <br/>
                             <button class="btn btn-primary pull-right" type="submit">Buscar hotel</button>

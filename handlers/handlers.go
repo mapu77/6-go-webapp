@@ -145,10 +145,25 @@ func BuscarHotelHandler(w http.ResponseWriter, r *http.Request) (int, error) {
 
 	}
 	if r.Method == "GET" {
+		var chains []string
+		resp, body, _ := gorequest.New().Get(apiURL + "/hotels/chains").End()
+		if resp.StatusCode != 500 {
+			json.Unmarshal([]byte(body), &chains)
+		}
+
+		resp, body, _ = gorequest.New().Get(apiURL + "/hotels/cities").End()
+		var cities []string
+		if resp.StatusCode == 200 {
+			json.Unmarshal([]byte(body), &cities)
+		}
+		chains = append([]string{"Todas"}, chains...)
+		cities = append([]string{"Todas"}, cities...)
+
 		u := User{Username: getCookieUsername(w, r)}
+		r := Return{Username: u.Username, Cities: cities, Chains: chains}
 
 		t, _ := template.ParseFiles("templates/buscarHotel.html", "templates/menu.html")
-		return http.StatusOK, t.ExecuteTemplate(w, "buscarHotel.html", u)
+		return http.StatusOK, t.ExecuteTemplate(w, "buscarHotel.html", r)
 	}
 	return http.StatusMethodNotAllowed, nil
 }

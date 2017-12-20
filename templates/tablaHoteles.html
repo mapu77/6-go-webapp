@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hoteles encontrados</title>
+</head>
+<body>
+<div class="container">
+    {{template "menu" .}}
+{{if not .Hotels}}
+    <h2>No hay resultados para su búsqueda</h2>
+{{else}}
+    <h2>Hoteles encontrados</h2>
+    <table class="table table-striped table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>Id Hotel</th>
+            <th>Nombre hotel</th>
+            <th>Cadena</th>
+            <th>Nº habitaciones</th>
+            <th>Calle</th>
+            <th>Código postal</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        {{range $hotel := .Hotels}}
+             <tr>
+                <td>{{$hotel.Id}}</td>
+                <td>{{$hotel.Name}}</td>
+                <td>{{$hotel.HotelChain}}</td>
+                <td>{{$hotel.Rooms}}</td>
+                <td>{{$hotel.Street}}</td>
+                <td>{{$hotel.ZipCode}}</td>
+                <td>{{$hotel.City}}</td>
+                <td>{{$hotel.Country}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+{{end}}
+</div>
+</body>
+</html>

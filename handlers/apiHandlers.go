@@ -38,6 +38,7 @@ type Return struct {
 	Flights   []Flight
 	Companies []string
 	Cities    []string
+	Chains	  []string
 	Hotels    []Hotel
 }
 
@@ -121,8 +122,51 @@ func GetFlights(w http.ResponseWriter, r *http.Request) (int, error) {
 }
 
 func GetHotels(w http.ResponseWriter, r *http.Request) (int, error) {
+	values := r.URL.Query()
+	var nombreQuery string
+	if len(values["nombre"]) != 0 {
+		nombre := values["nombre"][0]
+		nombreQuery = "name=" + nombre + "&"
+	}
+	var ciudadQuery string
+	if len(values["ciudad"]) != 0 {
+		ciudad := values["ciudad"][0]
+		if ciudad != "Todas" {
+			ciudadQuery = "city=" + ciudad + "&"
+		}
+	}
+	var cadenaQuery string
+	if len(values["cadena"]) != 0 {
+		cadena := values["cadena"][0]
+		if cadena != "Todas" {
+			cadenaQuery = "hotelChain=" + cadena + "&"
+		}
+	}
 
-	return http.StatusNotImplemented, nil
+	url := apiURL + "/hotels?" + nombreQuery + ciudadQuery + cadenaQuery
+	resp, body, errs := gorequest.New().Get(url).End()
+	fmt.Print("resp:", resp)
+	fmt.Print("body:", body)
+	fmt.Print("errs:", errs)
+
+	if resp.StatusCode != 500 {
+		var hotels []Hotel
+		err := json.Unmarshal([]byte(body), &hotels)
+		if err != nil {
+			fmt.Print("ERRORRR")
+		}
+		//fmt.Print(flights)
+		u := User{Username: getCookieUsername(w, r)}
+
+		r := Return{Username: u.Username, Hotels: hotels}
+
+		t, _ := template.ParseFiles("templates/tablaHoteles.html", "templates/menu.html")
+		return http.StatusOK, t.ExecuteTemplate(w, "tablaHoteles.html", r)
+
+	} else {
+		return 500, nil
+	}
+	return resp.StatusCode, nil
 }
 
 func NewHotel(w http.ResponseWriter, r *http.Request) (int, error) {
